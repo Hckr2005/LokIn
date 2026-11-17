@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Notifications (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Step Counter -->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+
+    <!-- Health Connect -->
+<!--    <uses-permission android:name="android.permission.health.READ_STEPS" />-->
+<!--    <uses-permission android:name="android.permission.health.READ_HEART_RATE" />-->
+<!--    <uses-permission android:name="android.permission.health.WRITE_STEPS" />-->
+
+    <!-- WorkManager / exact alarms -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+
+    <!-- Health Connect intent filter (bắt buộc để app hiện trong Health Connect) -->
+<!--    <queries>-->
+<!--        <package android:name="com.google.android.apps.healthdata" />-->
+<!--    </queries>-->
+
+    <application
+        android:name=".LokInApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.LokIn"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- FCM Service -->
+        <service
+            android:name=".data.remote.firebase.LokInMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Health Connect -->
+<!--        <activity-alias-->
+<!--            android:name="ViewPermissionUsageActivity"-->
+<!--            android:exported="true"-->
+<!--            android:targetActivity=".MainActivity"-->
+<!--            android:permission="android.permission.START_VIEW_PERMISSION_USAGE">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />-->
+<!--            </intent-filter>-->
+<!--        </activity-alias>-->
+
+    </application>
+</manifest>
